@@ -148,6 +148,11 @@ app.get("/test-session", (req, res) => {
     res.send(req.session.user ? `Session Active: ${JSON.stringify(req.session.user)}` : "No active session");
 });
 
+// Handle 404 errors
+app.use((req, res) => {
+    res.status(404).render("404", { title: "Page Not Found" });
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
