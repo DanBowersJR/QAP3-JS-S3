@@ -86,7 +86,7 @@ app.post("/signup", async (req, res) => {
 
 // GET /login - Render login form
 app.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", { error: undefined }); // Pass no error initially
 });
 
 // POST /login - Handle user login
@@ -96,13 +96,13 @@ app.post("/login", async (req, res) => {
     // Find user by email
     const user = USERS.find(user => user.email === email);
     if (!user) {
-        return res.status(400).send("Invalid email or password.");
+        return res.render("login", { error: "Invalid email or password." }); // Send error to view
     }
 
     // Compare the provided password with the hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        return res.status(400).send("Invalid email or password.");
+        return res.render("login", { error: "Invalid email or password." }); // Send error to view
     }
 
     // Save user info in the session
