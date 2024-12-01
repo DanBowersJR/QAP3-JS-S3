@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 
 // GET /signup - Render signup form
 app.get("/signup", (req, res) => {
-    res.render("signup");
+    res.render("signup", { error: undefined }); // Pass no error initially
 });
 
 // POST /signup - Handle user signup
@@ -64,7 +64,7 @@ app.post("/signup", async (req, res) => {
     // Check if email is already registered
     const existingUser = USERS.find(user => user.email === email);
     if (existingUser) {
-        return res.status(400).send("Email is already registered.");
+        return res.render("signup", { error: "Email is already registered." }); // Send error to view
     }
 
     // Hash the password
