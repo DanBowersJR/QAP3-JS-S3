@@ -1,10 +1,10 @@
-<%- include('partials/header', { title: "Landing Page" }) %>
+<%- include('partials/header', { title: "Dashboard" }) %>
 
 <h1>Welcome, <%= user.username %>!</h1>
 
 <% if (user.role === 'admin') { %>
-    <h2>All Registered Users</h2>
-    <table>
+    <h2>Admin Dashboard: All Registered Users</h2>
+    <table border="1">
         <thead>
             <tr>
                 <th>Username</th>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <% users.forEach(registeredUser => { %>
+            <% users.forEach((registeredUser) => { %>
                 <tr>
                     <td><%= registeredUser.username %></td>
                     <td><%= registeredUser.email %></td>
@@ -23,6 +23,7 @@
         </tbody>
     </table>
 <% } else { %>
+    <h2>User Dashboard</h2>
     <p>This is your personal dashboard. More features coming soon!</p>
 <% } %>
 

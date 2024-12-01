@@ -1,7 +1,12 @@
 <%- include('partials/header', { title: "Home" }) %>
-    <h1>Authentication Practice</h1>
-    <span class="index-button-container">
+
+<div class="main-content">
+    <h1>Welcome to the User Management System!</h1>
+    <p>Please choose an option to get started:</p>
+    <div class="index-button-container">
         <button onclick="window.location.href='/login'">Login</button>
         <button onclick="window.location.href='/signup'">Sign Up</button>
-    </span>
+    </div>
+</div>
+
 <%- include('partials/footer') %>
