@@ -1,0 +1,31 @@
+<%- include('partials/header', { title: "Landing Page" }) %>
+
+<h1>Welcome, <%= user.username %>!</h1>
+
+<% if (user.role === 'admin') { %>
+    <h2>All Registered Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(registeredUser => { %>
+                <tr>
+                    <td><%= registeredUser.username %></td>
+                    <td><%= registeredUser.email %></td>
+                    <td><%= registeredUser.role %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>This is your personal dashboard. More features coming soon!</p>
+<% } %>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') %>
